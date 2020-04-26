@@ -13,46 +13,50 @@
 import UIKit
 
 protocol HomeDisplayLogic: class {
-  func displayFilters(viewModel: Home.Something.ViewModel)
+    func displayFilters(viewModel: Home.Something.ViewModel)
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic {
-  var interactor: HomeBusinessLogic?
-  var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
-  
-  // MARK: Setup
-  private func setup() {
-    let viewController = self
-    let interactor = HomeInteractor()
-    let presenter = HomePresenter()
-    let router = HomeRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  func showCardsForFilter() {
-    router?.routeToCards()
-  }
-  
-  // MARK: View lifecycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setup()
-    fetchFilters()
-  }
-  
-  // MARK: Do something
-  func fetchFilters() {
-    let request = Home.Something.Request()
-    interactor?.fetchFilters(request: request)
-  }
-  
-  func displayFilters(viewModel: Home.Something.ViewModel) {
-   
-  }
+    var interactor: HomeBusinessLogic?
+    var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
+    
+    // MARK: Setup
+    private func setup() {
+        let viewController = self
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter()
+        let router = HomeRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    private func setupUI() {
+        
+    }
+    
+    // MARK: Routing
+    func showCardsForFilter() {
+        router?.routeToCards()
+    }
+    
+    // MARK: View lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+        fetchFilters()
+    }
+    
+    // MARK: Do something
+    func fetchFilters() {
+        let request = Home.Something.Request()
+        interactor?.fetchFilters(request: request)
+    }
+    
+    func displayFilters(viewModel: Home.Something.ViewModel) {
+        
+    }
 }
