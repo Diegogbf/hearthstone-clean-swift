@@ -8,7 +8,11 @@
 
 import UIKit
 
-class FilterTypeCollectionViewCell: UICollectionViewCell {
+class FilterTypeCollectionViewCell: UICollectionViewCell, Reusable {
+    
+    static var reuseId: String {
+        return String(describing: self)
+    }
     
     enum Layout {
         static let nameLeadingTrailingDistance: CGFloat = 24

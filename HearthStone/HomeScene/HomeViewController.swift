@@ -19,6 +19,7 @@ protocol HomeDisplayLogic: class {
 class HomeViewController: UIViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
+    let homeView = HomeView()
     
     // MARK: Setup
     private func setup() {
@@ -34,10 +35,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         router.dataStore = interactor
     }
     
-    private func setupUI() {
-        
-    }
-    
     // MARK: Routing
     func showCardsForFilter() {
         router?.routeToCards()
@@ -48,6 +45,11 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewDidLoad()
         setup()
         fetchFilters()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = homeView
     }
     
     // MARK: Do something

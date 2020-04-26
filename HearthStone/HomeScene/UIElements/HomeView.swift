@@ -16,6 +16,7 @@ class HomeView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(FilterTypeCollectionViewCell.self)
         return collectionView
     }()
     
