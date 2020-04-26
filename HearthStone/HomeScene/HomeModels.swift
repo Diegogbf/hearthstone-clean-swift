@@ -14,14 +14,24 @@ import UIKit
 
 enum Home {
   // MARK: Use cases
-  enum Something {
-    struct Request {
-    }
-    
-    struct Response {
+  enum FetchFilters {
+    struct Response: Decodable {
+        var classes: [String]?
+        var sets: [String]?
+        var types: [String]?
+        var factions: [String]?
+        var qualities: [String]?
+        var races: [String]?
+        var locales: [String]?
     }
     
     struct ViewModel {
+        var items: [Item]
+    }
+    
+    struct Item {
+        var filterName: String
+        var categories: [String]
     }
   }
 }
