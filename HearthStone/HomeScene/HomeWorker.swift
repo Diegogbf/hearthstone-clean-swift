@@ -13,6 +13,11 @@
 import UIKit
 
 class HomeWorker {
-  func fetchFilters() {
-  }
+    func fetchFilters(success: @escaping (Home.FetchFilters.Response)->(), error: @escaping (String)->()) {
+        ServiceLayer.request(route: Router.getFilters, onSuccess: { (response: Home.FetchFilters.Response) in
+            success(response)
+        }) { (errorMsg) in
+            error(errorMsg)
+        }
+    }
 }

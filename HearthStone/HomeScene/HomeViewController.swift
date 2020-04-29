@@ -13,7 +13,7 @@
 import UIKit
 
 protocol HomeDisplayLogic: class {
-    func displayFilters(viewModel: Home.Something.ViewModel)
+    func displayFilters(viewModel: Home.FetchFilters.ViewModel)
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic {
@@ -54,11 +54,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     // MARK: Do something
     func fetchFilters() {
-        let request = Home.Something.Request()
-        interactor?.fetchFilters(request: request)
+        interactor?.fetchFilters()
     }
     
-    func displayFilters(viewModel: Home.Something.ViewModel) {
+    func displayFilters(viewModel: Home.FetchFilters.ViewModel) {
         
     }
 }

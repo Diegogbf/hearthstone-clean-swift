@@ -13,14 +13,24 @@
 import UIKit
 
 protocol HomePresentationLogic {
-  func presentFilters(response: Home.Something.Response)
+    func presentFilters(response: Home.FetchFilters.Response)
 }
 
 class HomePresenter: HomePresentationLogic {
-  weak var viewController: HomeDisplayLogic?
-  
-  func presentFilters(response: Home.Something.Response) {
-    let viewModel = Home.Something.ViewModel()
-    viewController?.displayFilters(viewModel: viewModel)
-  }
+    weak var viewController: HomeDisplayLogic?
+    
+    func presentFilters(response: Home.FetchFilters.Response) {
+        viewController?.displayFilters(viewModel: convertToViewModel(response: response))
+    }
+    
+    private func convertToViewModel(response: Home.FetchFilters.Response) -> Home.FetchFilters.ViewModel {
+        let classes = Home.FetchFilters.Item(filterName: "Classes", categories: response.classes ?? [])
+        let types = Home.FetchFilters.Item(filterName: "Types", categories: response.types ?? [])
+        let sets = Home.FetchFilters.Item(filterName: "Sets", categories: response.sets ?? [])
+        let factions = Home.FetchFilters.Item(filterName: "Factions", categories: response.factions ?? [])
+        let qualities = Home.FetchFilters.Item(filterName: "Qualities", categories: response.qualities ?? [])
+        let races = Home.FetchFilters.Item(filterName: "Races", categories: response.races ?? [])
+        let locales = Home.FetchFilters.Item(filterName: "Locales", categories: response.locales ?? [])
+        return Home.FetchFilters.ViewModel(items: [classes, types, sets, factions, qualities, races, locales])
+    }
 }

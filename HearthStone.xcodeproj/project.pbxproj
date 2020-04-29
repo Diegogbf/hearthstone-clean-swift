@@ -35,6 +35,7 @@
 		5895A8FF24552C3900B69848 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895A8F424552C3900B69848 /* HTTPMethod.swift */; };
 		5895A90024552C3900B69848 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895A8F524552C3900B69848 /* EndPointType.swift */; };
 		5895A90124552C3900B69848 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895A8F724552C3900B69848 /* Router.swift */; };
+		5895A90424571BE000B69848 /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895A90224571A5500B69848 /* HTTPURLResponse+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		5895A8F424552C3900B69848 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		5895A8F524552C3900B69848 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		5895A8F724552C3900B69848 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		5895A90224571A5500B69848 /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 		5895A8E4245523D000B69848 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				5895A90224571A5500B69848 /* HTTPURLResponse+Extensions.swift */,
 				5895A8E5245523EE00B69848 /* UICollectionView+Extensions.swift */,
 			);
 			path = Extension;
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5895A90424571BE000B69848 /* HTTPURLResponse+Extensions.swift in Sources */,
 				5895A8FA24552C3900B69848 /* JSONParameterEncoder.swift in Sources */,
 				5895A8FE24552C3900B69848 /* NetworkResponse.swift in Sources */,
 				5895A8FF24552C3900B69848 /* HTTPMethod.swift in Sources */,

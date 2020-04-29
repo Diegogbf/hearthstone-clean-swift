@@ -13,20 +13,26 @@
 import UIKit
 
 protocol HomeBusinessLogic {
-  func fetchFilters(request: Home.Something.Request)
+  func fetchFilters()
 }
 
 protocol HomeDataStore {
-  
+    var filters: Home.FetchFilters.Response? { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
+  var filters: Home.FetchFilters.Response?
   var presenter: HomePresentationLogic?
   var worker = HomeWorker()
   
   // MARK: Do something
-  func fetchFilters(request: Home.Something.Request) {
-    let response = Home.Something.Response()
-    presenter?.presentFilters(response: response)
+  func fetchFilters() {
+    worker.fetchFilters(success: { [weak self] response in
+        guard let self = self else { return }
+        self.filters = response
+        self.presenter?.presentFilters(response: response)
+    }, error: { [weak self] msg in
+        guard let _ = self else { return }
+    })
   }
 }
