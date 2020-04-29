@@ -81,7 +81,7 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(CategoryTableViewCell.self, indexPath: indexPath)
-        cell.set(subCategories: filters.items[indexPath.section].categories)
+        cell.set(cards: filters.items[indexPath.section].categories)
         return cell
     }
     
