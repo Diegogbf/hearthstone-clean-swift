@@ -49,6 +49,7 @@ class ServiceLayer {
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                addAdditionalHeaders(route.headers, request: &request)
                 
             case .requestParameters(bodyParameters: let bodyParameters, urlParameters: let urlParameters):
                 

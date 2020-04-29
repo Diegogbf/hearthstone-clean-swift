@@ -44,7 +44,7 @@ extension Router: EndPointType {
     }
     
     var headers: HTTPHeaders? {
-        return ["x-rapidapi-key": "16f41ce38fmshf2687748a16c1efp1b35cejsnb9877df6123a"]
+        return ["x-rapidapi-key": "16f41ce38fmshf2687748a16c1efp1b35cejsnb9877df6123a", "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"]
     }
 }
 
