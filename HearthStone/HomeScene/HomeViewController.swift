@@ -19,7 +19,22 @@ protocol HomeDisplayLogic: class {
 class HomeViewController: UIViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
-    let homeView = HomeView()
+    var filters: Home.FetchFilters.ViewModel!
+    
+    // MARK: Components
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(FilterTypeCollectionViewCell.self)
+        collectionView.register(
+            FilterTypeSectionHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: FilterTypeSectionHeader.reuseId
+        )
+        return collectionView
+    }()
     
     // MARK: Setup
     private func setup() {
@@ -33,6 +48,16 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+    }
+    
+    private func configureLayout() {
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     // MARK: Routing
@@ -49,7 +74,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     override func loadView() {
         super.loadView()
-        view = homeView
+        configureLayout()
     }
     
     // MARK: Do something
@@ -58,6 +83,46 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     func displayFilters(viewModel: Home.FetchFilters.ViewModel) {
-        
+        collectionView.reloadData()
     }
 }
+
+// MARK: UICollectionViewDelegate & UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 144, height: 104)
+    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return filters.items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filters.items[section].categories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(FilterTypeCollectionViewCell.self, indexPath: indexPath)
+        cell.set(card: filters.items[indexPath.section].categories[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let view = collectionView.dequeueReusableSupplementaryView(
+                FilterTypeSectionHeader.self,
+                indexPath: indexPath
+            )
+            view.typeNameLabel.text = filters.items[indexPath.section].filterName
+            return view
+        default:
+            assert(false, "Invalid element type")
+        }
+    }
+}
+

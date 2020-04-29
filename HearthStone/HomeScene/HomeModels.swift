@@ -13,25 +13,36 @@
 import UIKit
 
 enum Home {
-  // MARK: Use cases
-  enum FetchFilters {
-    struct Response: Decodable {
-        var classes: [String]?
-        var sets: [String]?
-        var types: [String]?
-        var factions: [String]?
-        var qualities: [String]?
-        var races: [String]?
-        var locales: [String]?
-    }
-    
-    struct ViewModel {
-        var items: [Item]
-    }
-    
     struct Item {
         var filterName: String
-        var categories: [String]
+        var categories: [Card]
     }
-  }
+    
+    struct Card {
+        var name: String
+        var color: UIColor {
+            return UIColor(
+                red: .random(in: 0...0.58),
+                green: .random(in: 0...0.58),
+                blue: .random(in: 0...0.58),
+                alpha: 1
+            )
+        }
+    }
+    // MARK: Use cases
+    enum FetchFilters {
+        struct Response: Decodable {
+            var classes: [String]?
+            var sets: [String]?
+            var types: [String]?
+            var factions: [String]?
+            var qualities: [String]?
+            var races: [String]?
+            var locales: [String]?
+        }
+        
+        struct ViewModel {
+            var items: [Item]
+        }
+    }
 }

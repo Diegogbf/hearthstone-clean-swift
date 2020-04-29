@@ -42,7 +42,7 @@ class FilterTypeCollectionViewCell: UICollectionViewCell, Reusable {
     }
     
     private func configureLayout() {
-        addSubview(filterView)
+        contentView.addSubview(filterView)
         NSLayoutConstraint.activate([
             filterView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             filterView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -58,8 +58,8 @@ class FilterTypeCollectionViewCell: UICollectionViewCell, Reusable {
         ])
     }
     
-    private func set(name: String, color: UIColor) {
-        filterNameLabel.text = name
-        filterView.backgroundColor = color
+    func set(card: Home.Card) {
+        filterNameLabel.text = card.name
+        filterView.backgroundColor = card.color
     }
 }

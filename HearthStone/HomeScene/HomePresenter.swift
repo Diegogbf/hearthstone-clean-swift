@@ -24,13 +24,54 @@ class HomePresenter: HomePresentationLogic {
     }
     
     private func convertToViewModel(response: Home.FetchFilters.Response) -> Home.FetchFilters.ViewModel {
-        let classes = Home.FetchFilters.Item(filterName: "Classes", categories: response.classes ?? [])
-        let types = Home.FetchFilters.Item(filterName: "Types", categories: response.types ?? [])
-        let sets = Home.FetchFilters.Item(filterName: "Sets", categories: response.sets ?? [])
-        let factions = Home.FetchFilters.Item(filterName: "Factions", categories: response.factions ?? [])
-        let qualities = Home.FetchFilters.Item(filterName: "Qualities", categories: response.qualities ?? [])
-        let races = Home.FetchFilters.Item(filterName: "Races", categories: response.races ?? [])
-        let locales = Home.FetchFilters.Item(filterName: "Locales", categories: response.locales ?? [])
+        let classes = Home.Item(
+            filterName: "Classes",
+            categories: (response.classes ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
+        
+        let types = Home.Item(
+            filterName: "Types",
+            categories: (response.types ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
+        
+        let sets = Home.Item(
+            filterName: "Sets",
+            categories: (response.sets ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
+        
+        let factions = Home.Item(
+            filterName: "Factions",
+            categories: (response.factions ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
+        
+        let qualities = Home.Item(
+            filterName: "Qualities",
+            categories: (response.qualities ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
+        
+        let races = Home.Item(
+            filterName: "Races",
+            categories: (response.races ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
+        
+        let locales = Home.Item(
+            filterName: "Locales",
+            categories: (response.locales ?? []).map {
+                Home.Card(name: $0)
+            }
+        )
         return Home.FetchFilters.ViewModel(items: [classes, types, sets, factions, qualities, races, locales])
     }
 }
