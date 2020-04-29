@@ -16,7 +16,7 @@ class FilterTypeCollectionViewCell: UICollectionViewCell, Reusable {
     
     enum Layout {
         static let nameLeadingTrailingDistance: CGFloat = 24
-        static let nameBottomDistance: CGFloat = 16
+        static let nameBottomDistance: CGFloat = -16
         static let filterViewRadius: CGFloat = 16
     }
     
@@ -33,6 +33,7 @@ class FilterTypeCollectionViewCell: UICollectionViewCell, Reusable {
         let filterNameLabel = UILabel()
         filterNameLabel.translatesAutoresizingMaskIntoConstraints = false
         filterNameLabel.textColor = .white
+        filterNameLabel.numberOfLines = 0
         return filterNameLabel
     }()
     
@@ -53,8 +54,8 @@ class FilterTypeCollectionViewCell: UICollectionViewCell, Reusable {
         filterView.addSubview(filterNameLabel)
         NSLayoutConstraint.activate([
             filterNameLabel.leadingAnchor.constraint(equalTo: filterView.leadingAnchor, constant: Layout.nameLeadingTrailingDistance),
-            filterNameLabel.topAnchor.constraint(equalTo: filterView.topAnchor),
-            filterNameLabel.trailingAnchor.constraint(equalTo: filterView.trailingAnchor, constant: Layout.nameLeadingTrailingDistance)
+            filterNameLabel.bottomAnchor.constraint(equalTo: filterView.bottomAnchor, constant: Layout.nameBottomDistance),
+            filterNameLabel.trailingAnchor.constraint(equalTo: filterView.trailingAnchor, constant: -Layout.nameLeadingTrailingDistance)
         ])
     }
     

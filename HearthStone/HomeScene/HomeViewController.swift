@@ -16,25 +16,10 @@ protocol HomeDisplayLogic: class {
     func displayFilters(viewModel: Home.FetchFilters.ViewModel)
 }
 
-class HomeViewController: UIViewController, HomeDisplayLogic {
+class HomeViewController: UITableViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
-    var filters: Home.FetchFilters.ViewModel!
-    
-    // MARK: Components
-    private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView()
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(FilterTypeCollectionViewCell.self)
-        collectionView.register(
-            FilterTypeSectionHeader.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: FilterTypeSectionHeader.reuseId
-        )
-        return collectionView
-    }()
+    var filters = Home.FetchFilters.ViewModel(items: [])
     
     // MARK: Setup
     private func setup() {
@@ -42,22 +27,14 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         let interactor = HomeInteractor()
         let presenter = HomePresenter()
         let router = HomeRouter()
+        self.interactor = interactor
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
-    }
-    
-    private func configureLayout() {
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        tableView.register(CategoryTableViewCell.self)
     }
     
     // MARK: Routing
@@ -74,7 +51,8 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     override func loadView() {
         super.loadView()
-        configureLayout()
+        title = "Hearthstone"
+        view.backgroundColor = .white
     }
     
     // MARK: Do something
@@ -83,46 +61,39 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     func displayFilters(viewModel: Home.FetchFilters.ViewModel) {
-        collectionView.reloadData()
+        filters = viewModel
+        tableView.reloadData()
     }
 }
 
-// MARK: UICollectionViewDelegate & UICollectionViewDataSource
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 144, height: 104)
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension HomeViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return filters.items.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filters.items[section].categories.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(FilterTypeCollectionViewCell.self, indexPath: indexPath)
-        cell.set(card: filters.items[indexPath.section].categories[indexPath.row])
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(CategoryTableViewCell.self, indexPath: indexPath)
+        cell.set(subCategories: filters.items[indexPath.section].categories)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryView(
-                FilterTypeSectionHeader.self,
-                indexPath: indexPath
-            )
-            view.typeNameLabel.text = filters.items[indexPath.section].filterName
-            return view
-        default:
-            assert(false, "Invalid element type")
-        }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 104
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "   " + filters.items[section].filterName
+        label.backgroundColor = .white
+        return label
     }
 }
 
