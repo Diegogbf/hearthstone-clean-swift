@@ -10,7 +10,7 @@ import Foundation
 
 enum Router {
     case getFilters
-    case getCards(type: String)
+    case getCards(request: Cards.FetchCards.Request)
 }
 
 extension Router: EndPointType {
@@ -22,8 +22,8 @@ extension Router: EndPointType {
         switch self {
         case .getFilters:
             return EndPoint.getInfo.rawValue
-        case .getCards(let type):
-            return EndPoint.getCards.rawValue + type
+        case .getCards:
+            return EndPoint.getCards.rawValue
         }
     }
     
@@ -38,8 +38,8 @@ extension Router: EndPointType {
         switch self {
         case .getFilters:
             return .request
-        case .getCards(let type):
-            return .requestParameters(bodyParameters: nil, urlParameters: nil)
+        case .getCards(let request):
+            return .requestParameters(bodyParameters: [request.category: request.subCategory], urlParameters: nil)
         }
     }
     

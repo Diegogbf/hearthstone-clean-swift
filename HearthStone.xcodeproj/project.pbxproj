@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		584B3050245921ED00492CFD /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584B304F245921ED00492CFD /* CategoryTableViewCell.swift */; };
 		584EE22B2459315B0072C6DE /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584EE22A2459315B0072C6DE /* UITableView+Extensions.swift */; };
+		58522E58245A48F50077C6D0 /* CardsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E52245A48F50077C6D0 /* CardsPresenter.swift */; };
+		58522E59245A48F50077C6D0 /* CardsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E53245A48F50077C6D0 /* CardsWorker.swift */; };
+		58522E5B245A48F50077C6D0 /* CardsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E55245A48F50077C6D0 /* CardsModels.swift */; };
+		58522E5C245A48F50077C6D0 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E56245A48F50077C6D0 /* CardsViewController.swift */; };
+		58522E5D245A48F50077C6D0 /* CardsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E57245A48F50077C6D0 /* CardsInteractor.swift */; };
 		587BCD6D24550F3700F42A41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BCD6C24550F3700F42A41 /* AppDelegate.swift */; };
 		587BCD6F24550F3700F42A41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BCD6E24550F3700F42A41 /* SceneDelegate.swift */; };
 		587BCD7124550F3700F42A41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BCD7024550F3700F42A41 /* ViewController.swift */; };
@@ -59,6 +64,11 @@
 /* Begin PBXFileReference section */
 		584B304F245921ED00492CFD /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		584EE22A2459315B0072C6DE /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		58522E52245A48F50077C6D0 /* CardsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPresenter.swift; sourceTree = "<group>"; };
+		58522E53245A48F50077C6D0 /* CardsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsWorker.swift; sourceTree = "<group>"; };
+		58522E55245A48F50077C6D0 /* CardsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsModels.swift; sourceTree = "<group>"; };
+		58522E56245A48F50077C6D0 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		58522E57245A48F50077C6D0 /* CardsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInteractor.swift; sourceTree = "<group>"; };
 		587BCD6924550F3700F42A41 /* HearthStone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HearthStone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		587BCD6C24550F3700F42A41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		587BCD6E24550F3700F42A41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +130,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58522E51245A48850077C6D0 /* CardsScene */ = {
+			isa = PBXGroup;
+			children = (
+				58522E52245A48F50077C6D0 /* CardsPresenter.swift */,
+				58522E53245A48F50077C6D0 /* CardsWorker.swift */,
+				58522E55245A48F50077C6D0 /* CardsModels.swift */,
+				58522E56245A48F50077C6D0 /* CardsViewController.swift */,
+				58522E57245A48F50077C6D0 /* CardsInteractor.swift */,
+			);
+			path = CardsScene;
+			sourceTree = "<group>";
+		};
 		587BCD6024550F3700F42A41 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +167,7 @@
 			children = (
 				5895A8E3245523C300B69848 /* Utility */,
 				5895A8E924552C3900B69848 /* Networking */,
+				58522E51245A48850077C6D0 /* CardsScene */,
 				587BCD9C2455123900F42A41 /* HomeScene */,
 				587BCD6C24550F3700F42A41 /* AppDelegate.swift */,
 				587BCD6E24550F3700F42A41 /* SceneDelegate.swift */,
@@ -397,7 +420,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58522E58245A48F50077C6D0 /* CardsPresenter.swift in Sources */,
 				5895A90424571BE000B69848 /* HTTPURLResponse+Extensions.swift in Sources */,
+				58522E5C245A48F50077C6D0 /* CardsViewController.swift in Sources */,
 				5895A8FA24552C3900B69848 /* JSONParameterEncoder.swift in Sources */,
 				5895A8FE24552C3900B69848 /* NetworkResponse.swift in Sources */,
 				5895A8FF24552C3900B69848 /* HTTPMethod.swift in Sources */,
@@ -406,6 +431,8 @@
 				587BCD6D24550F3700F42A41 /* AppDelegate.swift in Sources */,
 				5895A8FB24552C3900B69848 /* EndPoint.swift in Sources */,
 				587BCDA72455125600F42A41 /* HomeViewController.swift in Sources */,
+				58522E5D245A48F50077C6D0 /* CardsInteractor.swift in Sources */,
+				58522E5B245A48F50077C6D0 /* CardsModels.swift in Sources */,
 				587BCD6F24550F3700F42A41 /* SceneDelegate.swift in Sources */,
 				5895A8F824552C3900B69848 /* ParameterEncoder.swift in Sources */,
 				5895A8E82455242A00B69848 /* Reusable.swift in Sources */,
@@ -414,6 +441,7 @@
 				587BCDA42455125600F42A41 /* HomeWorker.swift in Sources */,
 				5895A8FC24552C3900B69848 /* HTTPTask.swift in Sources */,
 				5895A8FD24552C3900B69848 /* ServiceLayer.swift in Sources */,
+				58522E59245A48F50077C6D0 /* CardsWorker.swift in Sources */,
 				5895A90124552C3900B69848 /* Router.swift in Sources */,
 				5895A90024552C3900B69848 /* EndPointType.swift in Sources */,
 				5895A8E22455225200B69848 /* FilterTypeCollectionViewCell.swift in Sources */,
