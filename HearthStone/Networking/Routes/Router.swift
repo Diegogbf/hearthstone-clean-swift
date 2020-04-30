@@ -39,7 +39,7 @@ extension Router: EndPointType {
         case .getFilters:
             return .request
         case .getCards(let request):
-            return .requestParameters(bodyParameters: [request.category: request.subCategory], urlParameters: nil)
+            return .requestParameters(bodyParameters: nil, urlParameters: [request.category: request.subCategory])
         }
     }
     

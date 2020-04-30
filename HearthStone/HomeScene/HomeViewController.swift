@@ -27,7 +27,6 @@ class HomeViewController: UITableViewController, HomeDisplayLogic {
         let interactor = HomeInteractor()
         let presenter = HomePresenter()
         let router = HomeRouter()
-        self.interactor = interactor
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter

@@ -13,6 +13,17 @@
 import UIKit
 
 enum Cards {
+    
+    struct Card: Decodable {
+        var cardID, dbfID, name, cardSet: String?
+        var type, faction, rarity: String?
+        var health: Int?
+        var collectible: Bool?
+        var playerClass: String?
+        var img: String?
+        var imgGold: String?
+        var locale: String?
+    }
     // MARK: Use cases
     enum FetchCards {
         struct Request {
@@ -20,14 +31,11 @@ enum Cards {
             var subCategory: String
         }
         struct Response: Decodable {
-            var cardID, dbfID, name, cardSet: String?
-            var type, faction, rarity: String?
-            var health: Int?
-            var collectible: Bool?
-            var playerClass: String?
-            var img: String?
-            var imgGold: String?
-            var locale: String?
+            var basic: [Card]?
+            
+            enum CodingKeys: String, CodingKey {
+                case basic = "Basic"
+            }
         }
         struct ViewModel {
             var cardImages: [String]

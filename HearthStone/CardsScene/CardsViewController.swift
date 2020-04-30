@@ -16,16 +16,16 @@ protocol CardsDisplayLogic: class {
     func displayCards(viewModel: Cards.FetchCards.ViewModel)
 }
 
-class CardsViewController: UIViewController, CardsDisplayLogic {
+class CardsViewController: UICollectionViewController, CardsDisplayLogic {
     var interactor: CardsBusinessLogic?
     var request: Cards.FetchCards.Request!
+    var cards = Cards.FetchCards.ViewModel(cardImages: [])
     
     // MARK: Setup
     private func setup() {
         let viewController = self
         let interactor = CardsInteractor()
         let presenter = CardsPresenter()
-        self.interactor = interactor
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
@@ -35,11 +35,16 @@ class CardsViewController: UIViewController, CardsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        collectionView.backgroundColor = .white
+        collectionView.register(CardCollectionViewCell.self)
+        setup()
         fetchCards()
     }
     
     convenience required init(request: Cards.FetchCards.Request) {
-        self.init()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        self.init(collectionViewLayout: layout)
         self.request = request
     }
     
@@ -49,5 +54,27 @@ class CardsViewController: UIViewController, CardsDisplayLogic {
     }
     
     func displayCards(viewModel: Cards.FetchCards.ViewModel) {
+        cards = viewModel
+        collectionView.reloadData()
+    }
+}
+
+extension CardsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width/CGFloat(2) - 20.0
+        return CGSize(width: width, height: 230)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cards.cardImages.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(CardCollectionViewCell.self, indexPath: indexPath)
+        cell.set(imgUrl: cards.cardImages[indexPath.item])
+        return cell
     }
 }

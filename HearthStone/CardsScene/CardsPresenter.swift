@@ -21,7 +21,8 @@ class CardsPresenter: CardsPresentationLogic {
     
     // MARK: Display Cards
     func displayCards(response: Cards.FetchCards.Response) {
-//        let viewModel = Cards.FetchCards.ViewModel()
-//        viewController?.displayCards(viewModel: viewModel)
+        let cardUrls = response.basic?.filter{ $0.img != nil }.compactMap { $0.img } ?? []
+        let viewModel = Cards.FetchCards.ViewModel(cardImages: cardUrls)
+        viewController?.displayCards(viewModel: viewModel)
     }
 }

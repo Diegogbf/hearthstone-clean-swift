@@ -22,6 +22,8 @@ class ServiceLayer {
                     switch result {
                     case .success:
                         if let responseData = data {
+                            let convertedString = String(data: responseData, encoding: String.Encoding.utf8)
+                            print(convertedString)
                             let apiResponse = try! JSONDecoder().decode(T.self, from: responseData)
                             onSuccess(apiResponse)
                         }
@@ -44,12 +46,13 @@ class ServiceLayer {
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path), cachePolicy: .reloadIgnoringLocalCacheData
             , timeoutInterval: 10.0)
         request.httpMethod = route.httpMethod.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        addAdditionalHeaders(route.headers, request: &request)
         
         do {
             switch route.task {
             case .request:
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                addAdditionalHeaders(route.headers, request: &request)
+                break
                 
             case .requestParameters(bodyParameters: let bodyParameters, urlParameters: let urlParameters):
                 
