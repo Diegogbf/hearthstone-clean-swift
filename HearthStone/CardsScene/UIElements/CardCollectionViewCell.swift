@@ -13,12 +13,12 @@ class CardCollectionViewCell: UICollectionViewCell, Reusable {
     static var reuseId: String {
         return String(describing: self)
     }
-    
+
     // MARK: Components
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -42,6 +42,7 @@ class CardCollectionViewCell: UICollectionViewCell, Reusable {
     }
     
     func set(imgUrl: String) {
+        imageView.frame = contentView.frame
         imageView.downloadImage(url: imgUrl)
     }
 }

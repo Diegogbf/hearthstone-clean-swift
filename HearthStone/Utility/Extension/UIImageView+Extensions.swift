@@ -8,7 +8,10 @@
 
 import UIKit
 
+private var cache = ImageCache()
+
 extension UIImageView {
+    
     private func getImagetData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
@@ -16,20 +19,28 @@ extension UIImageView {
     func downloadImage(url: String?) {
         image = nil
         
-        let indicator = UIActivityIndicatorView()
-        addSubview(indicator)
-        center = indicator.center
-        indicator.startAnimating()
-        
         if let stringUrl = url, let url = URL(string: stringUrl) {
+            if let image = cache[url] {
+                self.image = image
+                return
+            }
+            
+            let indicator = UIActivityIndicatorView()
+            addSubview(indicator)
+            center = indicator.center
+            indicator.startAnimating()
+            
             getImagetData(from: url) { data, response, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async() {
                     indicator.stopAnimating()
                     indicator.removeFromSuperview()
                     self.image = UIImage(data: data)
+                    cache[url] = UIImage(data: data)
                 }
             }
         }
     }
 }
+
+

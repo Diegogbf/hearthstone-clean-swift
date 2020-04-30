@@ -18,21 +18,24 @@ class ServiceLayer {
             task = session.dataTask(with: request, completionHandler: { data, response, error in
                 let httpResponse = response as? HTTPURLResponse
                 let result = httpResponse?.handleResponse()
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success:
-                        if let responseData = data {
-                            let convertedString = String(data: responseData, encoding: String.Encoding.utf8)
-                            print(convertedString)
-                            let apiResponse = try! JSONDecoder().decode(T.self, from: responseData)
+                
+                switch result {
+                case .success:
+                    if let responseData = data {
+//                        let convertedString = String(data: responseData, encoding: String.Encoding.utf8)
+//                        print(convertedString)
+                        let apiResponse = try! JSONDecoder().decode(T.self, from: responseData)
+                        DispatchQueue.main.async {
                             onSuccess(apiResponse)
                         }
-                    case .failure(let failure):
-                        let errorString = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String : String]
-                        onError(errorString?["message"] ?? failure)
-                    default:
-                        break
                     }
+                case .failure(let failure):
+                    let errorString = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String : String]
+                    DispatchQueue.main.async {
+                        onError(errorString?["message"] ?? failure)
+                    }
+                default:
+                    break
                 }
             })
         } catch {

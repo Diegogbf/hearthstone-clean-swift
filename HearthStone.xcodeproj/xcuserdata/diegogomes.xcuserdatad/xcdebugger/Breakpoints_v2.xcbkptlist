@@ -3,4 +3,150 @@
    uuid = "C9D52572-7FA9-4965-AC48-F7F11DFE2F9B"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B164D7B1-4AD2-4878-840C-48F035AB9B9A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HearthStone/Networking/Service/ServiceLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "request(route:onSuccess:onError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B164D7B1-4AD2-4878-840C-48F035AB9B9A - dd6e3f8c5c6bc61e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static HearthStone.ServiceLayer.request&lt;A where A: Swift.Decodable&gt;(route: HearthStone.EndPointType, onSuccess: (A) -&gt; (), onError: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "HearthStone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diegogomes/Documents/Projetos/HearthStone/HearthStone/Networking/Service/ServiceLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "1280">
+               </Location>
+               <Location
+                  uuid = "B164D7B1-4AD2-4878-840C-48F035AB9B9A - 9501f66c1b4603ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static HearthStone.ServiceLayer.request&lt;A where A: Swift.Decodable&gt;(route: HearthStone.EndPointType, onSuccess: (A) -&gt; (), onError: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "HearthStone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diegogomes/Documents/Projetos/HearthStone/HearthStone/Networking/Service/ServiceLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "41">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BB0C0834-59B0-41B8-83E7-571805BC6199"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HearthStone/Networking/Service/ServiceLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "request(route:onSuccess:onError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BB0C0834-59B0-41B8-83E7-571805BC6199 - dd6e3f8c5c6bc61e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static HearthStone.ServiceLayer.request&lt;A where A: Swift.Decodable&gt;(route: HearthStone.EndPointType, onSuccess: (A) -&gt; (), onError: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "HearthStone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diegogomes/Documents/Projetos/HearthStone/HearthStone/Networking/Service/ServiceLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "1133">
+               </Location>
+               <Location
+                  uuid = "BB0C0834-59B0-41B8-83E7-571805BC6199 - 9501f66c1b4603ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static HearthStone.ServiceLayer.request&lt;A where A: Swift.Decodable&gt;(route: HearthStone.EndPointType, onSuccess: (A) -&gt; (), onError: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "HearthStone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diegogomes/Documents/Projetos/HearthStone/HearthStone/Networking/Service/ServiceLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "41">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12EA7CD2-124F-42B3-8904-675256CEE457"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HearthStone/Networking/Service/ServiceLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "request(route:onSuccess:onError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "12EA7CD2-124F-42B3-8904-675256CEE457 - da53a10894ffb6f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static HearthStone.ServiceLayer.request&lt;A where A: Swift.Decodable&gt;(route: HearthStone.EndPointType, onSuccess: (A) -&gt; (), onError: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "HearthStone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diegogomes/Documents/Projetos/HearthStone/HearthStone/Networking/Service/ServiceLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "485">
+               </Location>
+               <Location
+                  uuid = "12EA7CD2-124F-42B3-8904-675256CEE457 - dd6e3f8c5c6bc61e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static HearthStone.ServiceLayer.request&lt;A where A: Swift.Decodable&gt;(route: HearthStone.EndPointType, onSuccess: (A) -&gt; (), onError: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "HearthStone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diegogomes/Documents/Projetos/HearthStone/HearthStone/Networking/Service/ServiceLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "446">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
