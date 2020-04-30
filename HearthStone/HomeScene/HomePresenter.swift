@@ -38,13 +38,6 @@ class HomePresenter: HomePresentationLogic {
             }
         )
         
-        let sets = Home.Item(
-            filterName: "Sets",
-            categories: (response.sets ?? []).map {
-                Home.Card(name: $0)
-            }
-        )
-        
         let factions = Home.Item(
             filterName: "Factions",
             categories: (response.factions ?? []).map {
@@ -65,13 +58,7 @@ class HomePresenter: HomePresentationLogic {
                 Home.Card(name: $0)
             }
         )
-        
-        let locales = Home.Item(
-            filterName: "Locales",
-            categories: (response.locales ?? []).map {
-                Home.Card(name: $0)
-            }
-        )
-        return Home.FetchFilters.ViewModel(items: [classes, types, sets, factions, qualities, races, locales])
+
+        return Home.FetchFilters.ViewModel(items: [classes, types, factions, qualities, races])
     }
 }

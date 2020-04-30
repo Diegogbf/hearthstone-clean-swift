@@ -33,12 +33,10 @@ enum Home {
     enum FetchFilters {
         struct Response: Decodable {
             var classes: [String]?
-            var sets: [String]?
             var types: [String]?
             var factions: [String]?
             var qualities: [String]?
             var races: [String]?
-            var locales: [String]?
         }
         
         struct ViewModel {
