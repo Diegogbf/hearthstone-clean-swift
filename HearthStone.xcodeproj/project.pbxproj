@@ -18,6 +18,8 @@
 		58522E63245A59C60077C6D0 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E62245A59C60077C6D0 /* UIImageView+Extensions.swift */; };
 		58522E66245A77260077C6D0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E65245A77260077C6D0 /* ImageCache.swift */; };
 		58522E68245A77E40077C6D0 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E67245A77E40077C6D0 /* UIImage+Extensions.swift */; };
+		58522E6A245B066E0077C6D0 /* WorkerPresentationFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E69245B066E0077C6D0 /* WorkerPresentationFeedback.swift */; };
+		58522E6C245B07F60077C6D0 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522E6B245B07F60077C6D0 /* UIViewController+Extensions.swift */; };
 		587BCD6D24550F3700F42A41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BCD6C24550F3700F42A41 /* AppDelegate.swift */; };
 		587BCD6F24550F3700F42A41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BCD6E24550F3700F42A41 /* SceneDelegate.swift */; };
 		587BCD7124550F3700F42A41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BCD7024550F3700F42A41 /* ViewController.swift */; };
@@ -77,6 +79,8 @@
 		58522E62245A59C60077C6D0 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		58522E65245A77260077C6D0 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		58522E67245A77E40077C6D0 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		58522E69245B066E0077C6D0 /* WorkerPresentationFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerPresentationFeedback.swift; sourceTree = "<group>"; };
+		58522E6B245B07F60077C6D0 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		587BCD6924550F3700F42A41 /* HearthStone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HearthStone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		587BCD6C24550F3700F42A41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		587BCD6E24550F3700F42A41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +163,16 @@
 			path = UIElements;
 			sourceTree = "<group>";
 		};
+		58522E6D245B134B0077C6D0 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				58522E69245B066E0077C6D0 /* WorkerPresentationFeedback.swift */,
+				587BCD9C2455123900F42A41 /* HomeScene */,
+				58522E51245A48850077C6D0 /* CardsScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		587BCD6024550F3700F42A41 = {
 			isa = PBXGroup;
 			children = (
@@ -184,8 +198,7 @@
 			children = (
 				5895A8E3245523C300B69848 /* Utility */,
 				5895A8E924552C3900B69848 /* Networking */,
-				58522E51245A48850077C6D0 /* CardsScene */,
-				587BCD9C2455123900F42A41 /* HomeScene */,
+				58522E6D245B134B0077C6D0 /* Scenes */,
 				587BCD6C24550F3700F42A41 /* AppDelegate.swift */,
 				587BCD6E24550F3700F42A41 /* SceneDelegate.swift */,
 				587BCD7024550F3700F42A41 /* ViewController.swift */,
@@ -256,6 +269,7 @@
 				5895A8E5245523EE00B69848 /* UICollectionView+Extensions.swift */,
 				584EE22A2459315B0072C6DE /* UITableView+Extensions.swift */,
 				58522E67245A77E40077C6D0 /* UIImage+Extensions.swift */,
+				58522E6B245B07F60077C6D0 /* UIViewController+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -442,10 +456,12 @@
 			files = (
 				58522E58245A48F50077C6D0 /* CardsPresenter.swift in Sources */,
 				5895A90424571BE000B69848 /* HTTPURLResponse+Extensions.swift in Sources */,
+				58522E6C245B07F60077C6D0 /* UIViewController+Extensions.swift in Sources */,
 				58522E5C245A48F50077C6D0 /* CardsViewController.swift in Sources */,
 				5895A8FA24552C3900B69848 /* JSONParameterEncoder.swift in Sources */,
 				5895A8FE24552C3900B69848 /* NetworkResponse.swift in Sources */,
 				58522E66245A77260077C6D0 /* ImageCache.swift in Sources */,
+				58522E6A245B066E0077C6D0 /* WorkerPresentationFeedback.swift in Sources */,
 				5895A8FF24552C3900B69848 /* HTTPMethod.swift in Sources */,
 				58522E61245A59420077C6D0 /* CardCollectionViewCell.swift in Sources */,
 				587BCD7124550F3700F42A41 /* ViewController.swift in Sources */,

@@ -22,16 +22,20 @@ protocol HomeDataStore {
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
   var selectedCategory: Cards.FetchCards.Request!
-  var presenter: HomePresentationLogic?
+  var presenter: (HomePresentationLogic & WorkerPresentationFeedback)?
   var worker = HomeWorker()
   
-  // MARK: Do something
+  // MARK: fetch filters
   func fetchFilters() {
+    presenter?.load(showLoader: true)
     worker.fetchFilters(success: { [weak self] response in
         guard let self = self else { return }
+        self.presenter?.load(showLoader: false)
         self.presenter?.presentFilters(response: response)
     }, error: { [weak self] msg in
-        guard let _ = self else { return }
+        guard let self = self else { return }
+        self.presenter?.load(showLoader: false)
+        self.presenter?.showError(message: msg)
     })
   }
 }

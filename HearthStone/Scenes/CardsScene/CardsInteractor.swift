@@ -17,16 +17,20 @@ protocol CardsBusinessLogic {
 }
 
 class CardsInteractor: CardsBusinessLogic {
-    var presenter: CardsPresentationLogic?
+    var presenter: (CardsPresentationLogic & WorkerPresentationFeedback)?
     var worker = CardsWorker()
     
     // MARK: Fetch Cards
     func fetchCards(request: Cards.FetchCards.Request) {
+        presenter?.load(showLoader: true)
         worker.fetchCards(request: request, success: { [weak self] response in
             guard let self = self else { return }
+            self.presenter?.load(showLoader: false)
             self.presenter?.displayCards(response: response)
         }, error: { [weak self] msg in
             guard let self = self else { return }
+            self.presenter?.load(showLoader: false)
+            self.presenter?.showError(message: msg)
         })
     }
 }

@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
         UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().isTranslucent = true
     }
 
     // MARK: UISceneSession Lifecycle

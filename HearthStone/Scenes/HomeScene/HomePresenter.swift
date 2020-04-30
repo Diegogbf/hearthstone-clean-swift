@@ -16,11 +16,19 @@ protocol HomePresentationLogic {
     func presentFilters(response: Home.FetchFilters.Response)
 }
 
-class HomePresenter: HomePresentationLogic {
-    weak var viewController: HomeDisplayLogic?
+class HomePresenter: HomePresentationLogic, WorkerPresentationFeedback {
+    weak var viewController: (HomeDisplayLogic & WorkerPresentationFeedback)?
     
     func presentFilters(response: Home.FetchFilters.Response) {
         viewController?.displayFilters(viewModel: convertToViewModel(response: response))
+    }
+    
+    func load(showLoader: Bool) {
+        viewController?.load(showLoader: showLoader)
+    }
+    
+    func showError(message: String) {
+        viewController?.showError(message: message)
     }
     
     private func convertToViewModel(response: Home.FetchFilters.Response) -> Home.FetchFilters.ViewModel {

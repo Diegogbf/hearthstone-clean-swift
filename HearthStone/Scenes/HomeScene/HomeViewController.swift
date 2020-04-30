@@ -16,10 +16,12 @@ protocol HomeDisplayLogic: class {
     func displayFilters(viewModel: Home.FetchFilters.ViewModel)
 }
 
-class HomeViewController: UITableViewController, HomeDisplayLogic {
+class HomeViewController: UITableViewController {
     var interactor: (HomeBusinessLogic & HomeDataStore)?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     var filters = Home.FetchFilters.ViewModel(items: [])
+    
+    private let tableRefreshControl = UIRefreshControl()
     
     // MARK: Setup
     private func setup() {
@@ -33,7 +35,12 @@ class HomeViewController: UITableViewController, HomeDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+    }
+    
+    private func setupTableViewView() {
         tableView.register(CategoryTableViewCell.self)
+        tableView.refreshControl = tableRefreshControl
+        tableRefreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
     }
     
     // MARK: Routing
@@ -44,6 +51,7 @@ class HomeViewController: UITableViewController, HomeDisplayLogic {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableViewView()
         setup()
         fetchFilters()
     }
@@ -54,14 +62,30 @@ class HomeViewController: UITableViewController, HomeDisplayLogic {
         view.backgroundColor = .white
     }
     
-    // MARK: Do something
+    // MARK: Fetch Filters
     func fetchFilters() {
         interactor?.fetchFilters()
     }
     
+    @objc func didPullToRefresh() {
+        fetchFilters()
+    }
+}
+
+extension HomeViewController: HomeDisplayLogic, WorkerPresentationFeedback {
     func displayFilters(viewModel: Home.FetchFilters.ViewModel) {
         filters = viewModel
         tableView.reloadData()
+    }
+    
+    func load(showLoader: Bool) {
+        DispatchQueue.main.async {
+            showLoader ? self.tableRefreshControl.beginRefreshing() :  self.tableRefreshControl.endRefreshing()
+        }
+    }
+    
+    func showError(message: String) {
+        showErrorAlert(msg: message)
     }
 }
 

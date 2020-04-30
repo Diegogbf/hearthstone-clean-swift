@@ -16,10 +16,12 @@ protocol CardsDisplayLogic: class {
     func displayCards(viewModel: Cards.FetchCards.ViewModel)
 }
 
-class CardsViewController: UICollectionViewController, CardsDisplayLogic {
+class CardsViewController: UICollectionViewController {
     var interactor: CardsBusinessLogic?
     var request: Cards.FetchCards.Request!
     var cards = Cards.FetchCards.ViewModel(cardImages: [])
+    
+    private let refreshControl = UIRefreshControl()
     
     // MARK: Setup
     private func setup() {
@@ -31,12 +33,19 @@ class CardsViewController: UICollectionViewController, CardsDisplayLogic {
         presenter.viewController = viewController
     }
     
+    private func setupCollectionView() {
+        collectionView.backgroundColor = .white
+        collectionView.register(CardCollectionViewCell.self)
+        collectionView.alwaysBounceVertical = true
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+    }
+    
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        collectionView.backgroundColor = .white
-        collectionView.register(CardCollectionViewCell.self)
+        setupCollectionView()
         setup()
         fetchCards()
     }
@@ -51,6 +60,22 @@ class CardsViewController: UICollectionViewController, CardsDisplayLogic {
     // MARK: Fetch Cards
     func fetchCards() {
         interactor?.fetchCards(request: request)
+    }
+    
+    @objc func didPullToRefresh() {
+        fetchCards()
+    }
+}
+
+extension CardsViewController: CardsDisplayLogic, WorkerPresentationFeedback {
+    func load(showLoader: Bool) {
+        DispatchQueue.main.async {
+            showLoader ? self.refreshControl.beginRefreshing() : self.refreshControl.endRefreshing()
+        }
+    }
+    
+    func showError(message: String) {
+        showErrorAlert(msg: message)
     }
     
     func displayCards(viewModel: Cards.FetchCards.ViewModel) {

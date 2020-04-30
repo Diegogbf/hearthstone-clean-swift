@@ -16,13 +16,21 @@ protocol CardsPresentationLogic {
     func displayCards(response: Cards.FetchCards.Response)
 }
 
-class CardsPresenter: CardsPresentationLogic {
-    weak var viewController: CardsDisplayLogic?
+class CardsPresenter: CardsPresentationLogic, WorkerPresentationFeedback {
+    weak var viewController: (CardsDisplayLogic & WorkerPresentationFeedback)?
     
     // MARK: Display Cards
     func displayCards(response: Cards.FetchCards.Response) {
         let cardUrls = response.basic?.filter{ $0.img != nil }.compactMap { $0.img } ?? []
         let viewModel = Cards.FetchCards.ViewModel(cardImages: cardUrls)
         viewController?.displayCards(viewModel: viewModel)
+    }
+    
+    func load(showLoader: Bool) {
+        viewController?.load(showLoader: showLoader)
+    }
+    
+    func showError(message: String) {
+        viewController?.showError(message: message)
     }
 }
