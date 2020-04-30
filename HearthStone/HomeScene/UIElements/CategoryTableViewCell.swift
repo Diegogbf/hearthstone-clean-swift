@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CategoryTableViewCellDelegate: class {
+    func selectedCategory(data: Cards.FetchCards.Request)
+}
+
 class CategoryTableViewCell: UITableViewCell, Reusable {
     static var reuseId: String {
         return String(describing: self)
@@ -19,7 +23,9 @@ class CategoryTableViewCell: UITableViewCell, Reusable {
         static let collectionLeftInset: CGFloat = 12
     }
     
-    var cards = [Home.Card]()
+    private var subCategories = [Home.Card]()
+    private var categoryName: String!
+    weak var delegate: CategoryTableViewCellDelegate?
     
     // MARK: Components
     private lazy var collectionView: UICollectionView = {
@@ -50,8 +56,9 @@ class CategoryTableViewCell: UITableViewCell, Reusable {
         ])
     }
     
-    func set(cards: [Home.Card]) {
-        self.cards = cards
+    func set(categoryName: String, subCategories: [Home.Card]) {
+        self.subCategories = subCategories
+        self.categoryName = categoryName
         collectionView.reloadData()
     }
 }
@@ -65,13 +72,22 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards.count
+        return subCategories.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(FilterTypeCollectionViewCell.self, indexPath: indexPath)
-        cell.set(card: cards[indexPath.item])
+        cell.set(card: subCategories[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.selectedCategory(
+            data: Cards.FetchCards.Request(
+                category: categoryName,
+                subCategory: subCategories[indexPath.item].name
+            )
+        )
     }
 }

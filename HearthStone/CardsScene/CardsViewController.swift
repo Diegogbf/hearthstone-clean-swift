@@ -18,6 +18,7 @@ protocol CardsDisplayLogic: class {
 
 class CardsViewController: UIViewController, CardsDisplayLogic {
     var interactor: CardsBusinessLogic?
+    var request: Cards.FetchCards.Request!
     
     // MARK: Setup
     private func setup() {
@@ -33,13 +34,18 @@ class CardsViewController: UIViewController, CardsDisplayLogic {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         fetchCards()
+    }
+    
+    convenience required init(request: Cards.FetchCards.Request) {
+        self.init()
+        self.request = request
     }
     
     // MARK: Fetch Cards
     func fetchCards() {
-//        let request = Cards.FetchCards.Request()
-//        interactor?.fetchCards(request: request)
+        interactor?.fetchCards(request: request)
     }
     
     func displayCards(viewModel: Cards.FetchCards.ViewModel) {

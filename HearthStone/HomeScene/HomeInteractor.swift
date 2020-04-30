@@ -17,11 +17,11 @@ protocol HomeBusinessLogic {
 }
 
 protocol HomeDataStore {
-    var filters: Home.FetchFilters.Response? { get set }
+    var selectedCategory: Cards.FetchCards.Request! { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
-  var filters: Home.FetchFilters.Response?
+  var selectedCategory: Cards.FetchCards.Request!
   var presenter: HomePresentationLogic?
   var worker = HomeWorker()
   
@@ -29,7 +29,6 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
   func fetchFilters() {
     worker.fetchFilters(success: { [weak self] response in
         guard let self = self else { return }
-        self.filters = response
         self.presenter?.presentFilters(response: response)
     }, error: { [weak self] msg in
         guard let _ = self else { return }

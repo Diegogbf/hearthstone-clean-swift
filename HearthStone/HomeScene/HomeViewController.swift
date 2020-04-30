@@ -17,7 +17,7 @@ protocol HomeDisplayLogic: class {
 }
 
 class HomeViewController: UITableViewController, HomeDisplayLogic {
-    var interactor: HomeBusinessLogic?
+    var interactor: (HomeBusinessLogic & HomeDataStore)?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     var filters = Home.FetchFilters.ViewModel(items: [])
     
@@ -81,7 +81,8 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(CategoryTableViewCell.self, indexPath: indexPath)
-        cell.set(cards: filters.items[indexPath.section].categories)
+        cell.set(categoryName: filters.items[indexPath.section].filterName, subCategories: filters.items[indexPath.section].categories)
+        cell.delegate = self
         return cell
     }
     
@@ -94,6 +95,13 @@ extension HomeViewController {
         label.text = "   " + filters.items[section].filterName
         label.backgroundColor = .white
         return label
+    }
+}
+
+extension HomeViewController: CategoryTableViewCellDelegate {
+    func selectedCategory(data: Cards.FetchCards.Request) {
+        interactor?.selectedCategory = data
+        router?.routeToCards()
     }
 }
 

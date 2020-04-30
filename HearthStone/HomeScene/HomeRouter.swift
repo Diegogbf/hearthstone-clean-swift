@@ -13,19 +13,20 @@
 import UIKit
 
 @objc protocol HomeRoutingLogic {
-  func routeToCards()
+    func routeToCards()
 }
 
 protocol HomeDataPassing {
-  var dataStore: HomeDataStore? { get }
+    var dataStore: HomeDataStore! { get }
 }
 
-class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing
-{
-  weak var viewController: HomeViewController?
-  var dataStore: HomeDataStore?
-  
-  // MARK: Routing
-  func routeToCards() {
-  }
+class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
+    weak var viewController: HomeViewController?
+    var dataStore: HomeDataStore!
+    
+    // MARK: Routing
+    func routeToCards() {
+        let cardsVc = CardsViewController(request: dataStore.selectedCategory)
+        viewController?.navigationController?.pushViewController(cardsVc, animated: true)
+    }
 }
